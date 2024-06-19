@@ -1,252 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movies</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
 
-      h1 {
-        text-align: center;
-        color: #333;
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 8px;
-      }
+    h1 {
+      text-align: center;
+      color: #333;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
 
-      .container {
-        width: 80%;
-        margin: 0 auto;
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
 
-      .logout-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 6px 12px;
-        background-color: #6a5acd;
-        color: white;
-        border-radius: 4px;
-        text-decoration: none;
-        border: 2px solid #333;
-      }
+    .logout-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 12px;
+      background-color: #6a5acd;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #333;
+    }
 
-      .logout-btn:hover {
-        background-color: #483d8b;
-      }
+    .logout-btn:hover {
+      background-color: #483d8b;
+    }
 
-      .add-movie-btn {
-        display: inline-block;
-        padding: 6px 12px;
-        background-color: #7ba8d6;
-        color: rgb(0, 0, 0);
-        border-radius: 4px;
-        text-decoration: none;
-        margin-bottom: 20px;
-        font-weight: bold;
-        border: 2px solid #333;
-      }
+    .add-movie-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #7ba8d6;
+      color: rgb(0, 0, 0);
+      border-radius: 4px;
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-weight: bold;
+      border: 2px solid #333;
+    }
 
-      .add-movie-btn:hover {
-        background-color: #7ba8d6;
-        color: black;
-      }
+    .add-movie-btn:hover {
+      background-color: #7ba8d6;
+      color: black;
+    }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        border: 2px solid #333;
-        border-radius: 8px;
-        margin-bottom: 20px;
-      }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
 
-      th,
-      td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
 
-      th {
-        background-color: #f8f8f8;
-        font-weight: bold;
-      }
+    th {
+      background-color: #f8f8f8;
+      font-weight: bold;
+    }
 
-      tr:hover {
-        background-color: #f1f1f1;
-      }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
 
-      .actions {
-        display: flex;
-        gap: 10px;
-      }
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
 
-      .actions a {
-        padding: 6px 12px;
-        background-color: #79d068;
-        color: rgb(0, 0, 0);
-        border-radius: 4px;
-        text-decoration: none;
-        border: 2px solid #333;
-        font-weight: bold;
-      }
+    .actions a {
+      padding: 6px 12px;
+      background-color: #79d068;
+      color: rgb(0, 0, 0);
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #333;
+      font-weight: bold;
+    }
 
-      .actions a:hover {
-        background-color: #efffef;
-      }
+    .actions a:hover {
+      background-color: #efffef;
+    }
 
-      .avg-rating {
-        display: inline-block;
-        padding: 5px 10px;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-      }
-      .movielist {
-        padding: 6px 12px;
-        border-radius: 4px;
-        border: 2px solid #333;
+    .avg-rating {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+    }
 
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border: 2px dashed #333;
-        border-radius: 8px;
-      }
-      .movietop {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      /* Form styles */
-      .movie-form {
-        margin-top: 20px;
-      }
+    .movielist {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 2px solid #333;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 2px dashed #333;
+      border-radius: 8px;
+    }
 
-      .movie-form label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-      }
+    .movietop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      .movie-form input[type="text"],
-      .movie-form select,
-      .movie-form textarea {
-        width: calc(100% - 24px);
-        padding: 8px;
-        margin-bottom: 20px;
-        border: 2px solid #333;
-        border-radius: 4px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      }
+    /* Form styles */
+    .movie-form {
+      margin-top: 20px;
+    }
 
-      .movie-form input[type="text"]:focus,
-      .movie-form select:focus,
-      .movie-form textarea:focus {
-        outline: none;
-        border-color: #7ba8d6;
-      }
+    .movie-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
 
-      .movie-form button[type="submit"],
-      .movie-form button[type="button"] {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-      }
+    .movie-form input[type="text"],
+    .movie-form select,
+    .movie-form textarea {
+      width: calc(100% - 24px);
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 2px solid #333;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-      .movie-form button[type="submit"] {
-        background-color: #79d068;
-        color: #fff;
-        border: 2px solid #333;
-      }
+    .movie-form input[type="text"]:focus,
+    .movie-form select:focus,
+    .movie-form textarea:focus {
+      outline: none;
+      border-color: #7ba8d6;
+    }
 
-      .movie-form button[type="submit"]:hover {
-        background-color: #6a5acd;
-      }
+    .movie-form button[type="submit"],
+    .movie-form button[type="button"] {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
 
-      .movie-form button[type="button"] {
-        background-color: #ccc;
-        color: #333;
-        border: 2px solid #333;
-        margin-left: 10px;
-        margin-bottom: 20px;
-      }
+    .movie-form button[type="submit"] {
+      background-color: #79d068;
+      color: #fff;
+      border: 2px solid #333;
+    }
 
-      .movie-form button[type="button"]:hover {
-        background-color: #bbb;
-      }
-      
-      /* Error styles */
-      .error {
-        border: 2px solid red;
-      }
+    .movie-form button[type="submit"]:hover {
+      background-color: #6a5acd;
+    }
 
-      .note {
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      }
+    .movie-form button[type="button"] {
+      background-color: #ccc;
+      color: #333;
+      border: 2px solid #333;
+      margin-left: 10px;
+      margin-bottom: 20px;
+    }
 
-      .note-red {
-        background-color: #f8d7da;
-        border-left: 5px solid red;
-      }
+    .movie-form button[type="button"]:hover {
+      background-color: #bbb;
+    }
 
-      .note-black {
-        background-color: #d1ecf1;
-        border-left: 5px solid #333;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Moldy Tomatoes</h1>
-      <a href="#" class="logout-btn">Logout</a>
-      <div>
-        <!-- new movie table -->
-        <div class="movielist">
-          <div class="movietop">
-            <h2>Submit a Review</h2>
-          </div>
-          <div class="movie-form">
-            <form method="POST" action="/process/new/movie">
-              <label for="movie-title">Movie Title</label>
-              <!-- display selected movie title here -->
+    /* Error styles */
+    .error {
+      border: 2px solid red;
+    }
 
-              <label for="your-name">Your Name</label>
-              <input type="text" name="reviewer" class="error" />
+    .note {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-              <label for="rating">Rating</label>
-              <select id="rating" name="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
+    .note-red {
+      background-color: #f8d7da;
+      border-left: 5px solid red;
+    }
 
-              <label for="review">Your Review</label>
-              <textarea name="review" rows="4"></textarea>
+    .note-black {
+      background-color: #d1ecf1;
+      border-left: 5px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Moldy Tomatoes</h1>
+    <a href="#" class="logout-btn">Logout</a>
+    <div>
+      <!-- new movie table -->
+      <div class="movielist">
+        <div class="movietop">
+          <h2>Submit a Review</h2>
+        </div>
+        <div class="movie-form">
+          <form method="POST" action="/process/new/review">
+            <label for="movie-title">Movie Title</label>
+            <input type="text" name="movie-title" value="{{ moviex.movietitle }}" readonly />
 
-              <button type="submit">Submit</button>
-              <button type="button">Cancel</button>
-            </form>
-          </div>
+            <label for="your-name">Your Name</label>
+            <input type="text" name="reviewer" required />
+
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+
+            <label for="review">Your Review</label>
+            <textarea name="review" rows="4" required></textarea>
+
+            <input type="hidden" name="movie_id" value="{{ moviex.id }}" />
+
+            <button type="submit">Submit</button>
+            <button type="button" onclick="window.location.href='/';">Cancel</button>
+          </form>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
